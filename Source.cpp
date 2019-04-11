@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include<string>
 #include<iostream>
+#include<conio.h>
 using namespace std;
 
 struct patient {
@@ -44,6 +45,44 @@ void main()
 	struct patient* headPtr = NULL;
 	int choice;
 	int ppsSearch;
+	FILE* login;
+	char username[10];
+	char password[6];
+	char fileUsername[10];
+	char filePassword[10];
+	int numInputs;
+	char ch;
+	int i;
+
+	cout << "/===== LOGIN ======/" << endl;
+
+	printf("Enter User name: ");
+	cin >> username;
+	printf("Enter the password <5 characters>: ");
+	while (1) {
+		ch = getch();
+		if (ch == 5) 
+		{
+			password[i] = '\0';
+
+		}
+		password[i] = ch;
+		i++;
+		printf("*");
+	}
+
+		login = fopen("userDatabase.txt", "r");
+
+	if (login == NULL) {
+		cout << "Sorry, file couldn't be opened." << endl;
+	}
+	else
+	{
+		while (!feof(login)) 
+		{
+			numInputs = fscanf(login, "%s %s" );
+		}
+	}
 
 	//Program header
 	cout << "==================== ABC DENTAL PRACTICE LTD - PATIENT DATABASE ====================" << endl;
@@ -52,8 +91,8 @@ void main()
 	cout << "\n1) Add patient (Note: PPS Number must be unique).\n2) Display all patient details to screen\n3) Display patient details\n4) Update a patient details\n5) Delete patient" << endl;
 	cout << "6) Generate statistics (A-D) based on the patient statistics.\n\n\tA. % of patients with a BMI of less than 18.5\n\tB. % of patients with a BMI of less than 25" << endl;
 	cout << "\tC. % of patients with a BMI of less than 30\n\tD. % of patients with a BMI of greater than 30\n" << endl;
-	cout << "7) Print all patient details into a report file.\n8) List all the patient of the following countries in order of their last appointment:\n" << endl;
-	
+	cout << "7) Print all patient details into a report file.\n8) List all the patients in order of their last appointment:\n" << endl;
+
 	cin >> choice;
 	while (choice != -1)
 	{
@@ -78,7 +117,7 @@ void main()
 			}
 		}
 		else if (choice == 3)
-		{	
+		{
 			if (headPtr == NULL) {
 				cout << "[ERROR]You cannot search for a patient if no patients have been added." << endl;
 			}
@@ -112,7 +151,7 @@ void main()
 				DeletePatientAtPPS(headPtr, ppsSearch);
 			}
 		}
-		else if(choice == 6)
+		else if (choice == 6)
 		{
 			if (headPtr == NULL) {
 				cout << "[ERROR]You cannot generate statistics if no patients have been added." << endl;
@@ -127,7 +166,7 @@ void main()
 		cout << "\n1) Add patient (Note: PPS Number must be unique).\n2) Display all patient details to screen\n3) Display patient details\n4) Update a patient details\n5) Delete patient" << endl;
 		cout << "6) Generate statistics (A-D) based on the patient statistics.\n\n\tA. % of patients with a BMI of less than 18.5\n\tB. % of patients with a BMI of less than 25" << endl;
 		cout << "\tC. % of patients with a BMI of less than 30\n\tD. % of patients with a BMI of greater than 30\n" << endl;
-		cout << "7) Print all patient details into a report file.\n8) List all the patient of the following countries in order of their last appointment:\n" << endl;
+		cout << "7) Print all patient details into a report file.\n8) List all the patients in order of their last appointment:\n" << endl;
 		cin >> choice;
 	}
 }
@@ -135,9 +174,9 @@ void main()
 void AddPatientAtStart(struct patient** top)
 {
 	/*
-	 * Adds a patient to the start of the list.
-	 * Function is called if lengthList returns 1.
-	 */
+	* Adds a patient to the start of the list.
+	* Function is called if lengthList returns 1.
+	*/
 	struct patient* newPatient;
 	newPatient = (struct patient*)malloc(sizeof(struct patient));
 
@@ -180,9 +219,9 @@ void AddPatientAtStart(struct patient** top)
 void AddPatientToEnd(struct patient* top)
 {
 	/*
-	 * Adds a patient to the end of the list.
-	 * Function is called if lenghtList returns more than 1.
-	 */
+	* Adds a patient to the end of the list.
+	* Function is called if lenghtList returns more than 1.
+	*/
 	struct patient* temp = top;
 	struct patient* newPatient;
 
@@ -234,8 +273,8 @@ void AddPatientToEnd(struct patient* top)
 void DisplayAll(struct patient* top)
 {
 	/*
-	 * Outputs all patients on the list, including their PPS numbers.
-	 */
+	* Outputs all patients on the list, including their PPS numbers.
+	*/
 	int patientCount = 1;
 	struct patient* temp = top;
 	while (temp != NULL)
@@ -256,19 +295,19 @@ void DisplayAll(struct patient* top)
 		else {
 			cout << "The patient is not allergic to any medication." << endl;
 		}
-		if (temp->smoking == 'M' ||  temp->smoking == 'm') {
+		if (temp->smoking == 'M' || temp->smoking == 'm') {
 			cout << "The patient smokes more than ten cigarettes per day." << endl;
 		}
-		else if (temp->smoking == 'L' ||  temp->smoking == 'l') {
+		else if (temp->smoking == 'L' || temp->smoking == 'l') {
 			cout << "The patient smokes less than ten cigarettes per day." << endl;
 		}
 		else {
 			cout << "The patient does not smoke." << endl;
 		}
-		if (temp->exercise == 'M' ||  temp->exercise == 'm') {
+		if (temp->exercise == 'M' || temp->exercise == 'm') {
 			cout << "The patient exercises more than twice per week." << endl;
 		}
-		else if (temp->exercise == 'L' ||  temp->exercise == 'l') {
+		else if (temp->exercise == 'L' || temp->exercise == 'l') {
 			cout << "The patient exercises less than twice per week" << endl;
 		}
 		else {
@@ -283,9 +322,9 @@ void DisplayAll(struct patient* top)
 void SearchPatient(struct patient* top)
 {
 	/*
-	 * Finds a patient if the ppsSearch matches a pps on the list
-	 * If found the patient details are output.
-	 */
+	* Finds a patient if the ppsSearch matches a pps on the list
+	* If found the patient details are output.
+	*/
 	int patientCount = 1;
 	struct patient* temp = top;
 	int searchChoice;
@@ -305,9 +344,9 @@ void SearchPatient(struct patient* top)
 		cout << "Enter the patients name you wish to search for:(firstname lastname)" << endl;
 		cin >> first >> last;
 	}
-	while (temp != NULL) 
+	while (temp != NULL)
 	{
-		if (temp->pps == search || strcmp(temp->firstName, first)==0 && strcmp(temp->lastName, last)==0)
+		if (temp->pps == search || strcmp(temp->firstName, first) == 0 && strcmp(temp->lastName, last) == 0)
 		{
 			cout << "\n/=============== PATIENT #" << patientCount << " DETAILS ===================/" << endl;
 			cout << "The patient's name is " << temp->firstName << " " << temp->lastName << endl;
@@ -318,7 +357,7 @@ void SearchPatient(struct patient* top)
 			cout << "The patient's last appointment was " << temp->lastAppt << endl;
 			cout << "The patient's weight is " << temp->weight << "kg" << endl;
 			cout << "The patient's height is " << temp->height << "m" << endl;
-			if (temp->allergies == 'Y'){
+			if (temp->allergies == 'Y') {
 				cout << "The medication the patient is allergic to is " << temp->medication << endl;
 			}
 			else {
@@ -336,7 +375,7 @@ void SearchPatient(struct patient* top)
 			if (temp->exercise == 'M') {
 				cout << "The patient exercises more than twice per week." << endl;
 			}
-			else if(temp->exercise == 'L'){
+			else if (temp->exercise == 'L') {
 				cout << "The patient exercises less than twice per week" << endl;
 			}
 			else {
@@ -352,9 +391,9 @@ void SearchPatient(struct patient* top)
 void UpdatePatient(struct patient* top)
 {
 	/*
-	 * Loops through the list until the pps matching ppsSearch is found, allows the user to change whichever variables they want by
-	 * Either choosing the (Y/N) option. 
-	 */
+	* Loops through the list until the pps matching ppsSearch is found, allows the user to change whichever variables they want by
+	* Either choosing the (Y/N) option.
+	*/
 	int patientCount = 1;
 	struct patient* temp = top;
 	int searchChoice;
@@ -362,7 +401,7 @@ void UpdatePatient(struct patient* top)
 	char choice;
 	char first[20];
 	char last[20];
-	
+
 	cout << "Enter 1 to search for a PPS number, Enter 2 to search for a patient name" << endl;
 	cin >> searchChoice;
 	if (searchChoice == 1)
@@ -501,10 +540,10 @@ void checkEmail(struct patient* top)
 		checkCount++;
 	}
 	/*
-	 * This for loop goes over the array and checks for @ symbol. 
-	 * I had to use a for loop as I didn't know where the position of the @ symbol would be as the user could enter in "@hotmail.com" or "@gmail.com" for example.
-	 * So it loops over the string and if the variable atCount is greater than one it increments checkCount the fifth and final time.
-	 */
+	* This for loop goes over the array and checks for @ symbol.
+	* I had to use a for loop as I didn't know where the position of the @ symbol would be as the user could enter in "@hotmail.com" or "@gmail.com" for example.
+	* So it loops over the string and if the variable atCount is greater than one it increments checkCount the fifth and final time.
+	*/
 	for (i = 0; i < length; i++) {
 		if (temp->email[i] == a) {
 			atCount++;
@@ -536,10 +575,8 @@ void DeletePatientAtPPS(struct patient* top, int ppsSearch)
 {
 	//Deletes patient at a given PPS
 	bool found;
-	struct patient* temp;
+	struct patient* temp = top;
 	struct patient* prev_temp;
-
-	temp = top;
 
 	while (temp != NULL)
 	{
@@ -564,40 +601,49 @@ void CalculateBMI(struct patient* top)
 	//Loops through list and calculates BMI for each patient. 
 	struct patient* temp = top;
 
+	cout << "Entered CalculateBMI function" << endl;
+
 	while (temp != NULL)
 	{
 		temp->bmi = (temp->weight) / (temp->height * temp->height);
+		cout << "Bmi = " << temp->bmi << endl;
 
 		temp = temp->NEXT;
 	}
 }
 
-void GenerateStatistics(struct patient* top) 
+void GenerateStatistics(struct patient* top)
 {
+	cout << "Entered generate statistics function.." << endl;
 	struct patient* temp = top;
 	int patientCount = 0;
 
-	int categoryACount = 0, categoryBCount = 0, categoryCCount = 0, categoryDCount = 0;
+	float categoryACount = 0, categoryBCount = 0, categoryCCount = 0, categoryDCount = 0;
 	float catAPercentage, catBPercentage, catCPercentage, catDPercentage;
 
 	while (temp != NULL)
 	{
 		if (temp->bmi < 18.5) {
 			categoryACount++;
+			cout << "Incrementing category a.." << endl;
 		}
 		else if (temp->bmi < 25) {
 			categoryBCount++;
+			cout << "Incrementing category b.." << endl;
 		}
 		else if (temp->bmi < 30) {
+			cout << "Incrementing category c.." << endl;
 			categoryCCount++;
 		}
 		else if (temp->bmi > 30) {
+			cout << "Incrementing category d.." << endl;
 			categoryDCount++;
 		}
 
 		patientCount++;
 		temp = temp->NEXT;
 	}
+	cout << "Calculating percentages" << endl;
 	catAPercentage = (categoryACount / patientCount) * 100;
 	catBPercentage = (categoryBCount / patientCount) * 100;
 	catCPercentage = (categoryCCount / patientCount) * 100;
@@ -607,7 +653,7 @@ void GenerateStatistics(struct patient* top)
 	cout << "Percentage of patients with a BMI under 18.5: " << catAPercentage << "%" << endl;
 	cout << "Percentage of patients with a BMI under   25: " << catBPercentage << "%" << endl;
 	cout << "Percentage of patients with a BMI under   30: " << catCPercentage << "%" << endl;
-	cout << "Percentage of patients with a BMI above   30: " << catCPercentage << "%" << endl;
+	cout << "Percentage of patients with a BMI above   30: " << catDPercentage << "%" << endl;
 	cout << "\n===================================================================/" << endl;
 }
 
