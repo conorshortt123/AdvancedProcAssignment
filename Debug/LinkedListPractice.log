@@ -1,0 +1,9 @@
+﻿  Source.cpp
+c:\users\conor\desktop\advanced procedural project 2019\linkedlistpractice\linkedlistpractice\source.cpp(518): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: see declaration of 'strcat'
+c:\users\conor\desktop\advanced procedural project 2019\linkedlistpractice\linkedlistpractice\source.cpp(601): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\conor\desktop\advanced procedural project 2019\linkedlistpractice\linkedlistpractice\source.cpp(602): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\conor\desktop\advanced procedural project 2019\linkedlistpractice\linkedlistpractice\source.cpp(603): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+c:\users\conor\desktop\advanced procedural project 2019\linkedlistpractice\linkedlistpractice\source.cpp(604): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  LinkedListPractice.vcxproj -> C:\Users\conor\Desktop\Advanced Procedural Project 2019\LinkedListPractice\Debug\AdvProcedural2019.exe
+  LinkedListPractice.vcxproj -> C:\Users\conor\Desktop\Advanced Procedural Project 2019\LinkedListPractice\Debug\AdvProcedural2019.pdb (Full PDB)
