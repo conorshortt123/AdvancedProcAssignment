@@ -1,0 +1,54 @@
+
+/=============== PATIENT DETAILS ===================/
+PPS no: 345
+The patient's name is Conor Shortt
+The patient was born in 1998
+The patient's gender is Male
+The patient's email address is conorshortt123@gmail.com
+The patient's next of kin is Mike Shortt
+The patient's last appointment was 24/05/1998
+The patient's weight is 70kg
+The patient's height is 1.9m
+The patient is not allergic to any medication.
+The patient smokes less than ten cigarettes per day.
+The patient exercises more than twice per week.
+/====================================================/
+
+/=============== PATIENT DETAILS ===================/
+PPS no: 123
+The patient's name is regwerg werg
+The patient was born in 123
+The patient's gender is male
+The patient's email address is conor@gmail.com
+The patient's next of kin is erg ergwerg
+The patient's last appointment was 2/2/2
+The patient's weight is 120kg
+The patient's height is 1.6m
+The patient is not allergic to any medication.
+The patient does not smoke.
+The patient does not exercise.
+/====================================================/
+
+/=============== PATIENT DETAILS ===================/
+PPS no: 456
+The patient's name is ewrg wergwerg
+The patient was born in 123
+The patient's gender is male
+The patient's email address is conor@gmail.com
+The patient's next of kin is rgferq gwergregw
+The patient's last appointment was 23/23/23
+The patient's weight is 60kg
+The patient's height is 1.9m
+The patient is not allergic to any medication.
+The patient does not smoke.
+The patient does not exercise.
+/====================================================/
+
+/====================== GENERATED STATISTICS ======================/
+
+Percentage of patients with a BMI under 18.5: 33.3333%
+Percentage of patients with a BMI under   25: 0%
+Percentage of patients with a BMI under   30: 0%
+Percentage of patients with a BMI above   30: 0%
+
+===================================================================/
